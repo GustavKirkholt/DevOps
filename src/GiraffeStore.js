@@ -6,6 +6,7 @@ const baseUrl = process.env.NODE_ENV === 'development' ?
   class GiraffeStore {
 
     giraffes = ["Loading Girafess..."];
+    state = [""];
 
       constructor(props) {
           makeAutoObservable(this,{},{autoBind:true});
@@ -13,11 +14,14 @@ const baseUrl = process.env.NODE_ENV === 'development' ?
       }
 
       fetchGiraffes (){
-          fetch(baseUrl + "rest/giraffes").then(
-              (response)=> response.json().then(
-                  (json)=> runInAction(()=>this.giraffes=json)
+          try{
+              fetch(baseUrl + "rest/giraffes").then(
+                  (response)=> response.json().then(
+                      (json)=> runInAction(()=>this.giraffes=json),
+                      this.state = "Loading"
+                  )
               )
-          )
+          } catch (error) {this.state = "Failed"}
       }
   }
 

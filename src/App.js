@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>It Works!</h1>
+        <h1>{giraffestore.state}</h1>
           <div>
               <Button onClick={()=>giraffestore.addGiraffe("Elmer")}>Tilføj giraf</Button>
               <h1></h1>
