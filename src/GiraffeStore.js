@@ -1,16 +1,24 @@
-import {action, makeObservable, observable} from "mobx"
+import {makeAutoObservable, runInAction} from "mobx"
+
+const baseUrl = process.env.NODE_ENV === 'development' ?
+    "http://localhost:8080/":""; //Check if dev environment
 
   class GiraffeStore {
 
-    giraffes = ["Marius","Melman"];
+    giraffes = ["Loading Girafess..."];
 
-    constructor(){
-        makeObservable(this, {giraffes: observable, addGiraffe: action}
-            );
-    }
-    addGiraffe(nickName) {
-        this.giraffes.push(nickName);
-    }
-}
+      constructor(props) {
+          makeAutoObservable(this,{},{autoBind:true});
+          this.fetchGiraffes();
+      }
+
+      fetchGiraffes (){
+          fetch(baseUrl + "rest/giraffes").then(
+              (response)=> response.json().then(
+                  (json)=> runInAction(()=>this.giraffes=json)
+              )
+          )
+      }
+  }
 
 export const giraffestore = new GiraffeStore();
