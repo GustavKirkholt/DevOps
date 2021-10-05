@@ -10,9 +10,9 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>{giraffestore.state}</h1>
+                <h1>State: {giraffestore.state}</h1>
                 <div>
-                    <Button onClick={()=>giraffestore.addGiraffe("Elmer")}>Tilføj giraf</Button>
+                    <Button onClick={()=>giraffestore.postGiraffess("Karsten")}>Tilføj giraf</Button>
                     <h1></h1>
                 </div>
                 <div>

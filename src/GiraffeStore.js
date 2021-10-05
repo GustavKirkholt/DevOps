@@ -1,3 +1,5 @@
+// RET IKKE I DEN HER
+
 import {makeAutoObservable, runInAction} from "mobx"
 
 const baseUrl = process.env.NODE_ENV === 'development' ?
