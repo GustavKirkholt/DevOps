@@ -11,7 +11,7 @@ class GiraffeStore {
 
     constructor(props) {
         makeAutoObservable(this,{giraffes: observable},{autoBind:true});
-        this.fetchGiraffes();
+        this.fetchGiraffesJS();
     }
 
     state = "Loading"
@@ -22,43 +22,15 @@ class GiraffeStore {
                 {
                 response.json().then(
                     (json)=> runInAction(()=>this.giraffes=json)
-                        .then(this.state = "Done")
+                        .then(this.state = "Doneeee")
                         .catch(this.state = "Failed")
                 )}
             )
     }
 
-    postGiraffess (newGiraffe) {
-        fetch(baseUrl + "rest/giraffes", {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify(newGiraffe)
-        }).then(response => response.json())
-            .then( response => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-            .then(this.fetchGiraffes()
-        )}
-
-   // postGiraffess (newGiraffe) {
-      //  fetch(baseUrl + "rest/giraffes", {
-        //    method: 'post',
-          //  headers: {
-            //    'Content-Type': 'application/json',
-              //  'Accept': 'application/json',
-           // },
-           // body: JSON.stringify(newGiraffe)
-       // }).then(function (response) {
-         //   return response.json();
-       // }).then(this.fetchGiraffes()
-       // )}
-
+    fetchGiraffesJS () {
+        fetch("http://localhost:8080/rest/giraffes/query").then((res)=>console.log(res.status))
+    }
 
 }
 

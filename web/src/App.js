@@ -12,7 +12,7 @@ function App() {
             <header className="App-header">
                 <h1>State: {giraffestore.state}</h1>
                 <div>
-                    <Button onClick={()=>giraffestore.postGiraffess("Karsten")}>Tilføj giraf</Button>
+                    <Button>Tilføj giraf</Button>
                     <h1></h1>
                 </div>
                 <div>
